@@ -1,5 +1,7 @@
 extends Node
 
+const PLAYER_NAME: String = "Player1"
+
 var rng = RandomNumberGenerator.new()
 
 func select_random(array):

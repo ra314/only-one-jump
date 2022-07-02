@@ -62,7 +62,7 @@ func _physics_process(delta):
 	if !is_on_floor():
 		# FRICTION_AIR when on the floor
 		velocity.x = sign(velocity.x) * max(0, abs(velocity.x) - FRICTION_AIR)
-			
+	
 	if is_on_floor() and !is_jumping:
 		velocity.y = 0
 		# FRICTION_GROUND when on the floor

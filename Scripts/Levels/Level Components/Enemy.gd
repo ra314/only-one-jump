@@ -72,7 +72,7 @@ func _on_Area2D_body_entered(body) -> void:
 	if dead:
 		return
 	
-	if body.name != "Player1":
+	if body.name != Utils.PLAYER_NAME:
 		return
 	
 	var player = body as Player
