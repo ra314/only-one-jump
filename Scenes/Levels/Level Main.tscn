@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Fonts/Font_50.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/Levels/Level Components/Moving Platform.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Levels/Level Components/player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Levels/Level Components/Platform.tscn" type="PackedScene" id=6]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Player1" parent="." instance=ExtResource( 5 )]
+position = Vector2( 61, 949 )
+scale = Vector2( 4, 4 )
+
+[node name="Camera2D" type="Camera2D" parent="Player1"]
+current = true
+
+[node name="Platform" parent="." instance=ExtResource( 6 )]
+position = Vector2( 0, 1024 )
+scale = Vector2( 20, 3.5 )
+
+[node name="Platform4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 640, 1024 )
+scale = Vector2( 20, 3.5 )
+
+[node name="Platform6" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1280, 1080 )
+rotation = -1.5708
+scale = Vector2( 20, 3.5 )
+script = ExtResource( 2 )
+rot_degrees = -90.0
+rot_duration = 10.0
+rotating = true
+
+[node name="Platform5" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1280, 1024 )
+scale = Vector2( 60, 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Label" type="Label" parent="."]
+margin_top = 576.0
+margin_right = 679.0
+margin_bottom = 638.0
+rect_pivot_offset = Vector2( 584, 40 )
+custom_fonts/font = ExtResource( 1 )
+text = "You have ONLY ONE JUMP"
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 960.0
+margin_top = 576.0
+margin_right = 1376.0
+margin_bottom = 638.0
+rect_pivot_offset = Vector2( 240, 48 )
+custom_fonts/font = ExtResource( 1 )
+text = "Exit this way >>>"
+autowrap = true
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 2144.0
+margin_top = 576.0
+margin_right = 2240.0
+margin_bottom = 833.0
+rect_pivot_offset = Vector2( 240, 48 )
+custom_fonts/font = ExtResource( 1 )
+text = "Exit
+v
+v
+v"
+autowrap = true
