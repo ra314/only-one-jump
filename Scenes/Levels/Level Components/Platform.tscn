@@ -1,16 +1,24 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/obstacle.png" type="Texture" id=1]
+[ext_resource path="res://Tilemap/Debug.tres" type="TileSet" id=2]
 
 [sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 8, 8 )
+extents = Vector2( 160.25, 32 )
 
 [node name="Platform" type="StaticBody2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 1 )
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 8, 8 )
+position = Vector2( 159.75, 32 )
 shape = SubResource( 12 )
+
+[node name="TileMap" type="TileMap" parent="."]
+rotation = -3.14159
+tile_set = ExtResource( 2 )
+format = 1
+tile_data = PoolIntArray( -5, 8, 0, -4, 5, 0, -3, 5, 0, -2, 5, 0, -1, 9, 0 )
