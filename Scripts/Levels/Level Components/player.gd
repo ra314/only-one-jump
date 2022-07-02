@@ -1,12 +1,14 @@
 extends KinematicBody2D
 class_name Player
 
+# This is roughly 3.25 blocks high
+const JUMP_SPEED = 1200
+const MAX_SPEED = 400
+
 const ACCELERATION_GROUND = 300
 const ACCELERATION_AIR = 75
-const JUMP_SPEED = 1200
 const FRICTION_GROUND = 30
 const FRICTION_AIR = 20
-const MAX_SPEED = 400
 
 const FALL_MULTIPLIER = 2.5;
 
@@ -16,18 +18,6 @@ var has_jumped = false
 var is_level_over = false
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-var init_position
-var init_direction
-var init_velocity
-
-var scene_manager: SceneManager
-
-func _ready():
-	get_curr_level_num()
-	init_position = position
-	init_velocity = velocity
-	reset()
 
 func _process(delta):
 	if is_level_over:
@@ -45,10 +35,10 @@ func _process(delta):
 			velocity -= Vector2(ACCELERATION_AIR, 0)
 	
 	# We use just_pressed so that the player can't hold jump infinitely to fly
-	if Input.is_action_just_pressed("jump") and is_on_floor() and not has_jumped:
-		velocity.y = -JUMP_SPEED
+	if Input.is_action_just_pressed("jump") and not has_jumped:
 		has_jumped = true
-		is_jumping = true
+		jump()
+		
 	if Input.is_key_pressed(KEY_X):
 		reset()
 	# Die below a certain height
@@ -56,6 +46,10 @@ func _process(delta):
 		reset()
 	# Applying max speed
 	velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
+
+func jump() -> void:
+	velocity.y = -JUMP_SPEED
+	is_jumping = true
 
 func _physics_process(delta):
 	if is_level_over:
@@ -79,11 +73,8 @@ func _physics_process(delta):
 	# Move based on the velocity and snap to the ground.
 	move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
 
-func reset():
-	position = init_position
-	velocity = init_velocity
-	has_jumped = false
-	is_level_over = false
+func reset() -> void:
+	get_tree().reload_current_scene()
 
 func get_curr_level_num() -> int:
 	return int(get_parent().name.replace("Level", ""))
