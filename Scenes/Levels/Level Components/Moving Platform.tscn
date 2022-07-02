@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Tilemap/Debug.tres" type="TileSet" id=2]
+[ext_resource path="res://Scripts/Levels/Level Components/Moving Platform.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 160.25, 32 )
 
-[node name="Platform" type="StaticBody2D"]
+[node name="Moving Platform" type="StaticBody2D"]
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 159.75, 32 )

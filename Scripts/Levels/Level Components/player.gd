@@ -15,10 +15,14 @@ const FALL_MULTIPLIER = 2.5;
 var velocity = Vector2(0, 0)
 var is_jumping = false
 var has_jumped = false
+var is_level_over = false
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _process(delta):
+	if is_level_over:
+		return
+	
 	if Input.is_action_pressed("move_right"):
 		if is_on_floor(): 
 			velocity += Vector2(ACCELERATION_GROUND, 0)
@@ -48,6 +52,9 @@ func jump() -> void:
 	is_jumping = true
 
 func _physics_process(delta):
+	if is_level_over:
+		return
+	
 	# Vertical movement code. Apply gravity.	
 	if !is_on_floor():
 		# FRICTION_AIR when on the floor
@@ -69,8 +76,16 @@ func _physics_process(delta):
 func reset() -> void:
 	get_tree().reload_current_scene()
 
-func action() -> void:
-	# Check for jumping. is_on_floor() must be called after movement code.
-	if is_on_floor():
-		velocity.y = -JUMP_SPEED
-		is_jumping = true
+func get_curr_level_num() -> int:
+	return int(get_parent().name.replace("Level", ""))
+
+func get_main() -> Main:
+	var children = get_tree().get_root().get_children()
+	for child in children:
+		if "Main" in child.name:
+			return child
+	assert(false)
+	return null
+
+func go_to_next_level():
+	get_main().load_level(get_curr_level_num()+1)
