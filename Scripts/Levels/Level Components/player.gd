@@ -18,13 +18,6 @@ var has_jumped = false
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var init_position
-var init_direction
-var init_velocity
-func _ready():
-	init_position = position
-	init_velocity = velocity
-
 func _process(delta):
 	if Input.is_action_pressed("move_right"):
 		if is_on_floor(): 
@@ -73,10 +66,10 @@ func _physics_process(delta):
 	# Move based on the velocity and snap to the ground.
 	move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
 
-func reset():
+func reset() -> void:
 	get_tree().reload_current_scene()
 
-func action():
+func action() -> void:
 	# Check for jumping. is_on_floor() must be called after movement code.
 	if is_on_floor():
 		velocity.y = -JUMP_SPEED
