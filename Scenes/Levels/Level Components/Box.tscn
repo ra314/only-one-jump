@@ -3,7 +3,7 @@
 [ext_resource path="res://Assets/Using/tile_0026.png" type="Texture" id=2]
 
 [sub_resource type="PhysicsMaterial" id=2]
-friction = 0.4
+friction = 0.3
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36, 36 )
@@ -11,6 +11,7 @@ extents = Vector2( 36, 36 )
 [node name="Box" type="RigidBody2D"]
 collision_layer = 2
 mode = 2
+mass = 0.5
 physics_material_override = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

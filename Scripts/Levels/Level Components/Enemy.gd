@@ -5,27 +5,37 @@ const MAX_SPEED = 250
 
 const FALL_MULTIPLIER = 2.5;
 
-var velocity = Vector2(0, 0)
 export (bool) var move_right = false
 var dead = false
 
-
+export (Vector2) var velocity = Vector2(0, 0)
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # Changes direction after getting stuck in a position for too long
 const WALL_TIMEOUT = 3
-var wall_time = 0
-var last_pos = Vector2(0, 0)
+export (float) var wall_time = 0
+export (Vector2) var last_pos = Vector2(0, 0)
+export (int) var slide_count = 0
+export (String) var recent_collide
+
+func _ready():
+	if move_right:
+		$Sprite.scale *= Vector2(-1, 1)
 
 func _process(delta):
 	if dead:
 		return
 		
-	if (is_on_wall() and get_slide_count() == 0) or wall_time >= WALL_TIMEOUT:
-		move_right = not move_right
-		$Sprite.scale *= Vector2(-1, 1)
-		wall_time = 0
-	elif is_on_wall() and get_slide_count() > 0:
+	slide_count = get_slide_count()
+		
+	if (get_slide_count() == 1) or wall_time >= WALL_TIMEOUT:
+		recent_collide = get_slide_collision(0).collider.name
+		if recent_collide == "TileMap" and is_on_wall():
+			move_right = not move_right
+			$Sprite.scale *= Vector2(-1, 1)
+			wall_time = 0
+			recent_collide = ""
+	elif is_on_wall() and get_slide_count() > 1:
 		if position == last_pos:
 			wall_time += delta
 		last_pos = position
@@ -34,8 +44,8 @@ func _process(delta):
 		velocity.x = MAX_SPEED
 	else:
 		velocity.x = -MAX_SPEED
-
-export (int, 0, 200) var push = 25
+		
+export (int, 0, 200) var push = 40
 export (int, 0, 200) var push_factor = 0.2
 
 func _physics_process(delta):

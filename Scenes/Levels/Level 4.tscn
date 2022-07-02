@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/Levels/Level Components/player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Levels/Level Components/Box.tscn" type="PackedScene" id=6]
 
-[node name="Level 3" type="Node2D"]
+[node name="Level 4" type="Node2D"]
 
 [node name="Box" parent="." groups=["bodies"] instance=ExtResource( 6 )]
 position = Vector2( -296, 736 )
@@ -28,20 +28,17 @@ contact_monitor = true
 position = Vector2( -656, 992 )
 scale = Vector2( 4, 4 )
 
-[node name="Camera2D" type="Camera2D" parent="Player1"]
-current = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Game Camera" type="Camera2D" parent="."]
 anchor_mode = 0
 
 [node name="Label" type="Label" parent="."]
-visible = false
-margin_top = 576.0
-margin_right = 679.0
-margin_bottom = 638.0
+margin_left = -632.0
+margin_top = 584.0
+margin_right = 47.0
+margin_bottom = 646.0
 rect_pivot_offset = Vector2( 584, 40 )
 custom_fonts/font = ExtResource( 1 )
-text = "You have ONLY ONE JUMP"
+text = "Using the EXTRA height"
 
 [node name="Label2" type="Label" parent="."]
 visible = false
@@ -74,4 +71,4 @@ tile_data = PoolIntArray( 589795, 5, 0, 589796, 5, 0, 589797, 5, 0, 589798, 5, 0
 
 [node name="Doorway" parent="." instance=ExtResource( 4 )]
 modulate = Color( 1, 1, 1, 0.439216 )
-position = Vector2( 1184, 832 )
+position = Vector2( 1256, 1024 )
