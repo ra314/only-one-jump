@@ -88,4 +88,5 @@ func get_main() -> Main:
 	return null
 
 func go_to_next_level():
+	$Camera2D.current = false
 	get_main().load_level(get_curr_level_num()+1)
