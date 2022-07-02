@@ -39,6 +39,7 @@ func _process(delta):
 	
 	# We use just_pressed so that the player can't hold jump infinitely to fly
 	if Input.is_action_just_pressed("jump") and not has_jumped:
+		has_jumped = true
 		jump()
 		
 	if Input.is_key_pressed(KEY_X):
@@ -50,11 +51,6 @@ func _process(delta):
 	velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
 
 func jump() -> void:
-	has_jumped = true
-	velocity.y = -JUMP_SPEED
-	is_jumping = true
-	
-func force_jump() -> void:
 	velocity.y = -JUMP_SPEED
 	is_jumping = true
 
