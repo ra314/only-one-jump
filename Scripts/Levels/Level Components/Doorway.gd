@@ -1,6 +1,5 @@
 extends Area2D
 
-const PLAYER_NAME: String = "Player1"
 var dragging_player: bool = false
 var center: Vector2
 const TELEPORT_DURATION = 1.0
@@ -12,7 +11,7 @@ func _ready():
 	print(center)
 
 func drag_player_in(body):
-	if body.name == PLAYER_NAME and not dragging_player:
+	if body.name == Utils.PLAYER_NAME and not dragging_player:
 		var player: Player = body
 		dragging_player = true
 		$Tween.interpolate_property(player, "global_position",
