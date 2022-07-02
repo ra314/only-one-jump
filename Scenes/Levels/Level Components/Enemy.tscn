@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Levels/Level Components/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Using/character_0000.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Using/character_0018.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 10 )
+extents = Vector2( 8, 6 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Enemy" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 1 )
 
@@ -14,5 +14,5 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.49011e-07, 2 )
+position = Vector2( 1.49011e-07, 6 )
 shape = SubResource( 1 )
