@@ -42,7 +42,7 @@ config/name="Only One Jump"
 config/description="Example of how to make a kinematic character controller in 2D using
 KinematicBody2D. The character moves around, is affected by moving
 platforms, can jump through one-way collision platforms, etc."
-run/main_scene="res://Scenes/Levels/Level Main.tscn"
+run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://Assets/icon.png"
 
 [autoload]
