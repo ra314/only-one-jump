@@ -37,12 +37,6 @@ func get_other_player_network_id():
 	player_keys.erase(player_name)
 	return players[player_keys[0]]
 
-remotesync func load_level(scene_str, world_str):
-	var scene = scene_manager._load_scene(scene_str)
-	scene._root = self
-	scene_manager._replace_scene(scene)
-	game_started = true
-
 func _ready():
 	# The event that triggers when a player connects to this instance of the game
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -50,7 +44,11 @@ func _ready():
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 	$CL/Popup/CloseButton.connect("button_down", self, "close_popup")
 	
-	var scene = scene_manager._load_scene("UI/Local Online")
+	var scene = scene_manager._load_scene("Levels/Level 1")
+	scene_manager._replace_scene(scene)
+
+func load_level(level_num: int):
+	var scene = scene_manager._load_scene("Levels/Level %d"%level_num)
 	scene_manager._replace_scene(scene)
 
 # Register a player to a dictionary that contains player names and player ids

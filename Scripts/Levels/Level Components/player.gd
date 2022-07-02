@@ -24,7 +24,6 @@ var init_velocity
 func _ready():
 	init_position = position
 	init_velocity = velocity
-	reset()
 
 func _process(delta):
 	if Input.is_action_pressed("move_right"):
@@ -40,9 +39,8 @@ func _process(delta):
 	
 	# We use just_pressed so that the player can't hold jump infinitely to fly
 	if Input.is_action_just_pressed("jump") and not has_jumped:
-		velocity.y = -JUMP_SPEED
-		has_jumped = true
-		is_jumping = true
+		jump()
+		
 	if Input.is_key_pressed(KEY_X):
 		reset()
 	# Die below a certain height
@@ -51,13 +49,12 @@ func _process(delta):
 	# Applying max speed
 	velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
 
-func jump(force_jump = false) -> void:
-	if (!force_jump and has_jumped):
-		return
-
-	if (!force_jump):
-		has_jumped = true
-
+func jump() -> void:
+	has_jumped = true
+	velocity.y = -JUMP_SPEED
+	is_jumping = true
+	
+func force_jump() -> void:
 	velocity.y = -JUMP_SPEED
 	is_jumping = true
 
@@ -80,13 +77,8 @@ func _physics_process(delta):
 	# Move based on the velocity and snap to the ground.
 	move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
 
-signal on_reset
 func reset():
-	position = init_position
-	velocity = init_velocity
-	has_jumped = false
-	
-	emit_signal("on_reset")
+	get_tree().reload_current_scene()
 
 func action():
 	# Check for jumping. is_on_floor() must be called after movement code.
