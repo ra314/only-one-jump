@@ -51,6 +51,9 @@ func jump() -> void:
 	velocity.y = -JUMP_SPEED
 	is_jumping = true
 
+export (int, 0, 200) var push = 25
+export (int, 0, 200) var push_factor = 0.2
+
 func _physics_process(delta):
 	if is_level_over:
 		return
@@ -71,7 +74,19 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	
 	# Move based on the velocity and snap to the ground.
-	move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
+	# move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
+	
+	velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP,
+					false, 4, PI/4, false)
+
+	# after calling move_and_slide()
+	for index in get_slide_count():
+		var collision = get_slide_collision(index)
+		if collision.collider.is_in_group("bodies"):
+			if is_on_floor():
+				collision.collider.apply_central_impulse(-collision.normal * push)
+			else:
+				collision.collider.apply_central_impulse(-collision.normal * velocity.length() * push_factor)
 
 func reset() -> void:
 	get_tree().reload_current_scene()
@@ -88,5 +103,4 @@ func get_main() -> Main:
 	return null
 
 func go_to_next_level():
-	$Camera2D.current = false
 	get_main().load_level(get_curr_level_num()+1)

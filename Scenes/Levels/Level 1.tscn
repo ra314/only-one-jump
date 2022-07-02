@@ -13,7 +13,6 @@ position = Vector2( 61, 949 )
 scale = Vector2( 4, 4 )
 
 [node name="Camera2D" type="Camera2D" parent="Player1"]
-current = true
 
 [node name="Label" type="Label" parent="."]
 margin_top = 576.0

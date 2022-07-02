@@ -74,6 +74,7 @@ singletons=[  ]
 
 input=false
 filter=false
+physi=false
 
 [importer_defaults]
 
@@ -134,6 +135,7 @@ multithread/thread_rid_pool_prealloc=60
 
 [physics]
 
+common/physics_fps=120
 2d/physics_engine="GodotPhysics"
 2d/default_gravity=2000
 
