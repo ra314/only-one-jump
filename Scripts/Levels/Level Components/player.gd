@@ -14,6 +14,7 @@ const FALL_MULTIPLIER = 2.5;
 var velocity = Vector2(0, 0)
 export(String, "Blue", "Red") var color
 var is_jumping = false
+var has_jumped = false
 var dead = false
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -43,9 +44,15 @@ func _process(delta):
 			velocity -= Vector2(AIR_ACCELERATION, 0)
 	
 	# We use just_pressed so that the player can't hold jump infinitely to fly
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and is_on_floor() and not has_jumped:
 		velocity.y = -JUMP_SPEED
+		has_jumped = true
 		is_jumping = true
+	if Input.is_key_pressed(KEY_X):
+		reset()
+	# Die below a certain height
+	if position.y > 2000:
+		reset()
 	# Applying max speed
 	velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
 
@@ -92,7 +99,7 @@ func reset():
 	position = init_position
 	velocity = init_velocity
 	dead = false
-	visible = true
+	has_jumped = false
 
 func action():
 	# Check for jumping. is_on_floor() must be called after movement code.
