@@ -94,10 +94,23 @@ func _physics_process(delta):
 	for index in get_slide_count():
 		var collision = get_slide_collision(index)
 		if collision.collider.is_in_group("bodies"):
-			if is_on_floor():
-				collision.collider.apply_central_impulse(-collision.normal * push)
+			if collision.collider is KinematicBody2D:
+				var kinematic = collision.collider as KinematicBody2D
+				
+				if Input.is_action_pressed("move_right") || Input.is_action_pressed("move_left"):
+					var move_right = Input.is_action_pressed("move_right") as bool
+					var dir_x = 0
+					if move_right:
+						dir_x = 1
+					else:
+						dir_x = -1
+						
+					kinematic.velocity = Vector2(MAX_SPEED * dir_x, kinematic.velocity.y)
 			else:
-				collision.collider.apply_central_impulse(-collision.normal * velocity.length() * push_factor)
+				if is_on_floor():
+					collision.collider.apply_central_impulse(-collision.normal * push)
+				else:
+					collision.collider.apply_central_impulse(-collision.normal * velocity.length() * push_factor)
 
 func reset() -> void:
 	reload_current_level()

@@ -8,7 +8,7 @@ friction = 0.3
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36, 36 )
 
-[node name="Box" type="RigidBody2D"]
+[node name="Box" type="RigidBody2D" groups=["bodies"]]
 collision_layer = 2
 mode = 2
 mass = 0.5
