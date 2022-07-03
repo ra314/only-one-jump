@@ -59,4 +59,3 @@ position = Vector2( 1616, 832 )
 
 [node name="Spring" parent="." instance=ExtResource( 2 )]
 position = Vector2( 832, 1024 )
-scale = Vector2( 4, 4 )
