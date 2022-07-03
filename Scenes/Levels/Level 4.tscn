@@ -8,7 +8,7 @@
 
 [node name="Level 4" type="Node2D"]
 
-[node name="Box" parent="." groups=["bodies"] instance=ExtResource( 6 )]
+[node name="Box" parent="." instance=ExtResource( 6 )]
 position = Vector2( -296, 736 )
 collision_layer = 3
 mode = 0
@@ -16,7 +16,7 @@ mass = 0.25
 gravity_scale = 0.5
 contact_monitor = true
 
-[node name="Box2" parent="." groups=["bodies"] instance=ExtResource( 6 )]
+[node name="Box2" parent="." instance=ExtResource( 6 )]
 position = Vector2( -504, 936 )
 collision_layer = 3
 mode = 0
@@ -24,7 +24,7 @@ mass = 0.25
 gravity_scale = 0.5
 contact_monitor = true
 
-[node name="Player1" parent="." groups=["bodies"] instance=ExtResource( 5 )]
+[node name="Player1" parent="." instance=ExtResource( 5 )]
 position = Vector2( -656, 992 )
 scale = Vector2( 4, 4 )
 

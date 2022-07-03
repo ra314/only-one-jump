@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scenes/Levels/Level Components/Pressure Plate.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Levels/Level Components/Pressure Plate.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Using/tile_0148.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Using/tile_0149.png" type="Texture" id=3]
 
