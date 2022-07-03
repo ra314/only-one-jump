@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Pressure_Plate",
 "language": "GDScript",
-"path": "res://Scenes/Levels/Level Components/Pressure Plate.gd"
+"path": "res://Scripts/Levels/Level Components/Pressure Plate.gd"
 }, {
 "base": "Node2D",
 "class": "SceneManager",
@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Stalagmite",
 "language": "GDScript",
-"path": "res://Scenes/Levels/Level Components/Stalagmite.gd"
+"path": "res://Scripts/Levels/Level Components/Stalagmite.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
