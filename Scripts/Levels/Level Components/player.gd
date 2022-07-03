@@ -50,7 +50,7 @@ func _process(delta):
 		has_jumped = true
 		jump()
 		
-	if Input.is_key_pressed(KEY_X):
+	if Input.is_action_just_pressed("reset"):
 		reset()
 	# Die below a certain height
 	if position.y > 2000:
