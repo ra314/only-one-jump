@@ -1,6 +1,7 @@
 extends Node
 
 const PLAYER_NAME: String = "Player1"
+const KEY_NAME: String = "Key"
 
 var rng = RandomNumberGenerator.new()
 
