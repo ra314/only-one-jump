@@ -12,13 +12,15 @@
 position = Vector2( 61, 949 )
 scale = Vector2( 4, 4 )
 
-[node name="Camera2D" type="Camera2D" parent="Player1"]
-current = true
+[node name="Game Camera" type="Camera2D" parent="."]
+position = Vector2( 0, 576 )
+anchor_mode = 0
 
 [node name="Label" type="Label" parent="."]
-margin_top = 576.0
-margin_right = 679.0
-margin_bottom = 638.0
+margin_left = 200.0
+margin_top = 808.0
+margin_right = 879.0
+margin_bottom = 870.0
 rect_pivot_offset = Vector2( 584, 40 )
 custom_fonts/font = ExtResource( 2 )
 text = "You have ONLY ONE JUMP"
@@ -60,4 +62,4 @@ rotating = true
 
 [node name="Doorway" parent="." instance=ExtResource( 5 )]
 modulate = Color( 1, 1, 1, 0.415686 )
-position = Vector2( 2048, 832 )
+position = Vector2( 2152, 1024 )

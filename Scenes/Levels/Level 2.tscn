@@ -12,24 +12,21 @@
 position = Vector2( -112, 984 )
 scale = Vector2( 4, 4 )
 
-[node name="Camera2D" type="Camera2D" parent="Player1"]
-current = true
+[node name="Game Camera" type="Camera2D" parent="."]
+anchor_mode = 0
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
 position = Vector2( 832, 1019 )
 scale = Vector2( 4, 4 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-
 [node name="Label" type="Label" parent="."]
-visible = false
-margin_top = 576.0
-margin_right = 679.0
-margin_bottom = 638.0
+margin_left = 112.0
+margin_top = 624.0
+margin_right = 791.0
+margin_bottom = 686.0
 rect_pivot_offset = Vector2( 584, 40 )
 custom_fonts/font = ExtResource( 1 )
-text = "You have ONLY ONE JUMP"
+text = "A helping hand"
 
 [node name="Label2" type="Label" parent="."]
 visible = false
@@ -62,4 +59,4 @@ tile_data = PoolIntArray( 851961, 4, 0, 851962, 5, 0, 851963, 5, 0, 851964, 6, 0
 
 [node name="Doorway" parent="." instance=ExtResource( 4 )]
 modulate = Color( 1, 1, 1, 0.439216 )
-position = Vector2( 1536, 640 )
+position = Vector2( 1600, 832 )

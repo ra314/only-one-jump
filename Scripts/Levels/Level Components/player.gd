@@ -12,16 +12,27 @@ const FRICTION_AIR = 20
 
 const FALL_MULTIPLIER = 2.5;
 
-var velocity = Vector2(0, 0)
-var is_jumping = false
+export (Vector2) var velocity = Vector2(0, 0)
+export (bool) var is_jumping = false
 var has_jumped = false
 var is_level_over = false
 
+export (bool) var touching_floor = false
+export (bool) var touching_wall = false
+
+
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+export (float) var time_scale = 1
+func _ready():
+	Engine.time_scale = time_scale
 
 func _process(delta):
 	if is_level_over:
 		return
+		
+	touching_floor = is_on_floor()
+	touching_wall = is_on_wall()
 	
 	if Input.is_action_pressed("move_right"):
 		if is_on_floor(): 
@@ -51,6 +62,9 @@ func jump() -> void:
 	velocity.y = -JUMP_SPEED
 	is_jumping = true
 
+export (int, 0, 200) var push = 25
+export (int, 0, 200) var push_factor = 0.2
+
 func _physics_process(delta):
 	if is_level_over:
 		return
@@ -71,10 +85,22 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	
 	# Move based on the velocity and snap to the ground.
-	move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
+	# move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
+	
+	velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP,
+					false, 4, PI/4, false)
+
+	# after calling move_and_slide()
+	for index in get_slide_count():
+		var collision = get_slide_collision(index)
+		if collision.collider.is_in_group("bodies"):
+			if is_on_floor():
+				collision.collider.apply_central_impulse(-collision.normal * push)
+			else:
+				collision.collider.apply_central_impulse(-collision.normal * velocity.length() * push_factor)
 
 func reset() -> void:
-	get_tree().reload_current_scene()
+	reload_current_level()
 
 func get_curr_level_num() -> int:
 	return int(get_parent().name.replace("Level", ""))
@@ -84,9 +110,15 @@ func get_main() -> Main:
 	for child in children:
 		if "Main" in child.name:
 			return child
-	assert(false)
+	# assert(false)
 	return null
 
-func go_to_next_level():
-	$Camera2D.current = false
+func reload_current_level() -> void:
+	if get_main() == null:
+		get_tree().reload_current_scene()
+	else:
+		get_main().load_level(get_curr_level_num())
+
+func go_to_next_level() -> void:
 	get_main().load_level(get_curr_level_num()+1)
+	$Camera2D.current = true
