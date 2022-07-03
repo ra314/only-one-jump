@@ -110,12 +110,15 @@ func get_main() -> Main:
 	for child in children:
 		if "Main" in child.name:
 			return child
-	assert(false)
 	return null
 
 func reload_current_level() -> void:
-	$Camera2D.current = false
-	get_main().load_level(get_curr_level_num())
+	# This case is for testing when you're playing the levels out of order
+	if get_main() == null:
+		get_tree().reload_current_scene()
+	else:
+		$Camera2D.current = false
+		get_main().load_level(get_curr_level_num())
 
 func go_to_next_level() -> void:
 	$Camera2D.current = false

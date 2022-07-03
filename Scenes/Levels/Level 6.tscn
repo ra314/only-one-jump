@@ -1,30 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scenes/Levels/Level Components/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Levels/Level Components/Pressure Plate.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Levels/Level Components/Doorway.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Levels/Level Components/Box.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Levels/Level Components/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Tilemap/Debug.tres" type="TileSet" id=5]
 [ext_resource path="res://Assets/Fonts/Font_50.tres" type="DynamicFont" id=6]
 
-[node name="Level 5" type="Node2D"]
-
-[node name="Box" parent="." groups=["bodies"] instance=ExtResource( 3 )]
-position = Vector2( -1000, 976 )
-collision_layer = 3
-mode = 0
-mass = 0.25
-gravity_scale = 0.5
-contact_monitor = true
+[node name="Level 6" type="Node2D"]
 
 [node name="Player1" parent="." groups=["bodies"] instance=ExtResource( 4 )]
 position = Vector2( -1176, 664 )
 scale = Vector2( 4, 4 )
-
-[node name="Enemy" parent="." instance=ExtResource( 1 )]
-position = Vector2( -1968, 608 )
-scale = Vector2( 4, 4 )
-move_right = true
 
 [node name="Game Camera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -70,3 +56,7 @@ tile_data = PoolIntArray( 720858, 5, 0, 720859, 5, 0, 720860, 5, 0, 720861, 5, 0
 [node name="Doorway" parent="." instance=ExtResource( 2 )]
 modulate = Color( 1, 1, 1, 0.439216 )
 position = Vector2( 192, 1024 )
+
+[node name="Spring" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1041, 994 )
+scale = Vector2( 4, 4 )
