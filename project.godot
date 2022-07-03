@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Lock",
 "language": "GDScript",
-"path": "res://Scenes/Levels/Level Components/Lock.gd"
+"path": "res://Scripts/Levels/Level Components/Lock.gd"
 }, {
 "base": "Node2D",
 "class": "Main",
