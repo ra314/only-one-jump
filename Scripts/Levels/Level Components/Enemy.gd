@@ -11,9 +11,6 @@ var dead = false
 export (Vector2) var velocity = Vector2(0, 0)
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-# Changes direction after getting stuck in a position for too long
-const WALL_TIMEOUT = 3
-export (float) var wall_time = 0
 export (Vector2) var last_pos = Vector2(0, 0)
 export (int) var slide_count = 0
 export (String) var recent_collide
@@ -22,24 +19,18 @@ func _ready():
 	if move_right:
 		$Sprite.scale *= Vector2(-1, 1)
 
+func flip_movement():
+	move_right = not move_right
+	$Sprite.scale *= Vector2(-1, 1)
+	recent_collide = ""
+
 func _process(delta):
 	if dead:
 		return
-		
-	slide_count = get_slide_count()
-		
-	if (get_slide_count() == 1) or wall_time >= WALL_TIMEOUT:
-		recent_collide = get_slide_collision(0).collider.name
-		if recent_collide == "TileMap" and is_on_wall():
-			move_right = not move_right
-			$Sprite.scale *= Vector2(-1, 1)
-			wall_time = 0
-			recent_collide = ""
-	elif is_on_wall() and get_slide_count() > 1:
-		if position == last_pos:
-			wall_time += delta
-		last_pos = position
-		
+	
+	if time_spent_still > TIME_SPENT_STILL_LIMIT:
+		flip_movement()
+	
 	if move_right:
 		velocity.x = MAX_SPEED
 	else:
@@ -48,6 +39,8 @@ func _process(delta):
 export (int, 0, 200) var push = 40
 export (int, 0, 200) var push_factor = 0.2
 
+var time_spent_still: float = 0.0
+const TIME_SPENT_STILL_LIMIT: float = 0.2
 func _physics_process(delta):
 	if dead:
 		return
@@ -74,6 +67,13 @@ func _physics_process(delta):
 				collision.collider.apply_central_impulse(-collision.normal * push)
 			else:
 				collision.collider.apply_central_impulse(-collision.normal * velocity.length() * push_factor)
+	
+	if velocity.distance_to(Vector2(0,0)) == 0:
+		time_spent_still += delta
+	else:
+		time_spent_still = 0
+	
+	
 	
 func on_die() -> void:
 	get_tree().queue_delete(self)

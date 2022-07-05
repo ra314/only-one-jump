@@ -6,7 +6,6 @@ func _ready():
 
 signal unlocking
 func _on_body_entered(body) -> void:
-	print(body)
 	if body.name == Utils.KEY_NAME:
 		emit_signal("unlocking")
 

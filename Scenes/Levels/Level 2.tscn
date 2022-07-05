@@ -26,7 +26,7 @@ margin_right = 791.0
 margin_bottom = 686.0
 rect_pivot_offset = Vector2( 584, 40 )
 custom_fonts/font = ExtResource( 1 )
-text = "A helping hand"
+text = "Stomp that Goomba"
 
 [node name="Label2" type="Label" parent="."]
 visible = false

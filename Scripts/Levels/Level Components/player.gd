@@ -112,7 +112,7 @@ func _physics_process(delta):
 				else:
 					collision.collider.apply_central_impulse(-collision.normal * velocity.length() * push_factor)
 
-func reset() -> void:
+func reset() -> void:=
 	reload_current_level()
 
 func get_curr_level_num() -> int:

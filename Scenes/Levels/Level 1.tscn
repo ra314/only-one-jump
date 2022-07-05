@@ -25,20 +25,10 @@ rect_pivot_offset = Vector2( 584, 40 )
 custom_fonts/font = ExtResource( 2 )
 text = "You have ONLY ONE JUMP"
 
-[node name="Label2" type="Label" parent="."]
-margin_left = 960.0
-margin_top = 576.0
-margin_right = 1376.0
-margin_bottom = 638.0
-rect_pivot_offset = Vector2( 240, 48 )
-custom_fonts/font = ExtResource( 2 )
-text = "Exit this way >>>"
-autowrap = true
-
 [node name="Label3" type="Label" parent="."]
-margin_left = 2144.0
+margin_left = 1408.0
 margin_top = 576.0
-margin_right = 2240.0
+margin_right = 1504.0
 margin_bottom = 833.0
 rect_pivot_offset = Vector2( 240, 48 )
 custom_fonts/font = ExtResource( 2 )
@@ -57,9 +47,9 @@ tile_data = PoolIntArray( 1048576, 4, 0, 1048577, 5, 0, 1048578, 5, 0, 1048579, 
 position = Vector2( 1280, 1088 )
 rotation = -1.5708
 rot_degrees = -90.0
-rot_duration = 2.0
+rot_duration = 10.0
 rotating = true
 
 [node name="Doorway" parent="." instance=ExtResource( 5 )]
 modulate = Color( 1, 1, 1, 0.415686 )
-position = Vector2( 2152, 1024 )
+position = Vector2( 1480, 1024 )

@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/Using/tile_0150.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 8.8125, 9 )
+extents = Vector2( 18, 18 )
 
 [node name="Doorway" type="Area2D"]
 scale = Vector2( 4, 4 )
@@ -21,11 +21,12 @@ format = 1
 tile_data = PoolIntArray( -5, 8, 0, -4, 5, 0, -3, 5, 0, -2, 5, 0, -1, 9, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.1875, -9 )
+position = Vector2( 0, -18 )
 shape = SubResource( 12 )
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -9 )
+position = Vector2( 0, -18 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
