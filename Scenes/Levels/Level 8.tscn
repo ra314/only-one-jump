@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Fonts/Font_50.tres" type="DynamicFont" id=1]
+
+[node name="Level 8" type="Node2D"]
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 803.0
+margin_top = 255.0
+margin_right = 1042.0
+margin_bottom = 322.0
+rect_pivot_offset = Vector2( 240, 48 )
+custom_fonts/font = ExtResource( 1 )
+text = "THE END"
+autowrap = true
+
+[node name="Label4" type="Label" parent="."]
+margin_left = 271.0
+margin_top = 449.0
+margin_right = 1642.0
+margin_bottom = 602.0
+rect_pivot_offset = Vector2( 240, 48 )
+custom_fonts/font = ExtResource( 1 )
+text = "Thank you for playing. This game was created with the theme from the 2019 GMTK game jam \"Only one\"."
+autowrap = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 958, 534 )
+current = true
